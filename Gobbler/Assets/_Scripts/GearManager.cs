@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Jext;
 
-public class GearManager : MonoBehaviour {
-
+public class GearManager : MonoBehaviour
+{
     [SerializeField]
     private KeyCode buttonSelectGear;
     [SerializeField]
@@ -72,10 +72,8 @@ public class GearManager : MonoBehaviour {
             if (chosenGear == gears[gear])
                 right = !Methods.IsEven(gear);
 
-        foreach (Gear gear in GearEditor.self.gears)
-        {
-            gear.right = right;
-            right = !right;
-        }
+        gears[0].right = right;
+        for (int gear = 1; gear < gears.Count; gear++)
+            gears[gear].right = !gears[gear].right;
     }
 }

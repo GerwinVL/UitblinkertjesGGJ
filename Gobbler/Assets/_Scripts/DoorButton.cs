@@ -17,7 +17,8 @@ public class DoorButton : MonoBehaviour {
             {
                 activated = true;
                 targetPosZ = door.transform.position.z + 1.5f;
-                StartCoroutine(MoveDoor());
+                // StartCoroutine(MoveDoor());
+                door.SetActive(false);
             }
         }
     }

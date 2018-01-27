@@ -12,7 +12,8 @@ public class GearEditor : MonoBehaviour {
     private float dis, radians, x, y;
     private Vector3 root, ret;
     private Gear[] gearsArr;
-    private List<Gear> gears = new List<Gear>();
+    [HideInInspector]
+    public List<Gear> gears = new List<Gear>();
 
     private void Awake()
     {

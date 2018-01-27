@@ -11,17 +11,41 @@ public class GearManager : MonoBehaviour
     private float gearSpeed;
     [SerializeField]
     private ChangeGear chosenGear;
-    private List<Gear> gears;
+    private List<Gear> gears, childs;
+    private Gear child;
+    [SerializeField]
+    private bool inverseRotation;
 
     private void Start()
     {
         GearEditor.InitGears();
         gears = GearEditor.self.gears;
 
-        gears.ForEach(gear => gear.child = null);
+        gears.ForEach(gear => gear.childs = new List<Gear>());
         foreach (Gear gear in gears)
             if (gear.parent != null)
-                gear.parent.child = gear;
+                gear.parent.childs.Add(gear);
+        
+        chosenGear.gear.right = inverseRotation;
+        childs = new List<Gear>();
+
+        foreach (Gear gear in chosenGear.gear.childs)
+        {
+            gear.right = !chosenGear.gear.right;
+            childs.Add(gear);
+        }
+
+        while(childs.Count > 0)
+        {
+            child = childs[0];
+            childs.RemoveAt(0);
+
+            foreach (Gear gear in child.childs)
+            {
+                gear.right = !chosenGear.gear.right;
+                childs.Add(gear);
+            }
+        }
 
         SetupGearRotation();
     }
@@ -69,23 +93,12 @@ public class GearManager : MonoBehaviour
         }
     }
 
-    private Gear gear;
     private void SetupGearRotation()
     {
         chosenGear.SetColor(Color.red);
 
-        gear = chosenGear.gear;
-        gear.right = true;
-        while(gear.parent != null)
-        {
-            gear.parent.right = !gear.right;
-            gear = gear.parent;
-        }
-
-        while(gear.child != null)
-        {
-            gear.child.right = !gear.right;
-            gear = gear.child;
-        }
+        if(!chosenGear.gear.right)
+            foreach (Gear gear in gears)
+                gear.right = !gear.right;
     }
 }

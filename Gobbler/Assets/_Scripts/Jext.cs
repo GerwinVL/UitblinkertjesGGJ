@@ -23,6 +23,11 @@ namespace Jext
             return i % 2 == 0;
         }
 
+        public static bool CompareVector3(Vector3 vec1, Vector3 vec2)
+        {
+            return Vector3.SqrMagnitude(vec1 - vec2) < 0.0001;
+        }
+
         #region Game Specific
 
         /// <summary>

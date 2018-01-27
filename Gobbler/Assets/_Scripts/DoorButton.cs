@@ -7,6 +7,7 @@ public class DoorButton : MonoBehaviour {
     private bool activated;
     //public GameObject door;
     public Animator door;
+    public Animator button;
     private float targetPosZ;
     private float moveSpeed = 3f;
 
@@ -17,9 +18,10 @@ public class DoorButton : MonoBehaviour {
             if (!activated)
             {
                 activated = true;
-             //   targetPosZ = door.transform.position.z + 1.5f;
+                //   targetPosZ = door.transform.position.z + 1.5f;
                 // StartCoroutine(MoveDoor());
                 //door.SetActive(false);
+                button.SetTrigger("Triggered");
                 door.SetTrigger("Open");
             }
         }

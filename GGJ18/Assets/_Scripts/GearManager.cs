@@ -72,10 +72,10 @@ public class GearManager : MonoBehaviour {
             if (chosenGear == gears[gear])
                 right = !Methods.IsEven(gear);
 
-        foreach (Gear gear in GearEditor.self.gears)
+        gears[0].right = right;
+        for (int gear = 1; gear < gears.Count; gear++)
         {
-            gear.right = right;
-            right = !right;
+            gears[gear].right = !gears[gear].right;
         }
     }
 }

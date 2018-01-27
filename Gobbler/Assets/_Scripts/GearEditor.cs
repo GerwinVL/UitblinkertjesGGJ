@@ -5,8 +5,8 @@ using System;
 using UnityEditor;
 
 [ExecuteInEditMode]
-public class GearEditor : MonoBehaviour {
-
+public class GearEditor : MonoBehaviour
+{
     public static GearEditor self;
 
     public bool update;
@@ -74,7 +74,7 @@ public class ObjectBuilderEditor : Editor
 
         GearEditor myScript = (GearEditor)target;
         if (!myScript.update)
-            if(GUILayout.Button("Connect"))
+            if (GUILayout.Button("Connect"))
                 myScript.ConnectAllGears();
     }
 }

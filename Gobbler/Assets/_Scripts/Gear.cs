@@ -4,8 +4,8 @@ using UnityEngine;
 using System;
 using Jext;
 
-public class Gear : MonoBehaviour, IComparable<Gear> {
-
+public class Gear : MonoBehaviour, IComparable<Gear>
+{
     public Gear parent;
     [Range(0, 359)]
     public int angle;

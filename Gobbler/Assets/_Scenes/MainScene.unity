@@ -1240,6 +1240,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ballPos: {fileID: 2123168934}
   camPos: {x: -9.49, y: -12.89, z: -15.11}
+  gear: {fileID: 1330251577}
 --- !u!23 &421224967
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2297,6 +2298,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ballPos: {fileID: 1315509358}
   camPos: {x: -0.01, y: -0.18, z: -15.11}
+  gear: {fileID: 482407497}
 --- !u!23 &663400987
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4347,6 +4349,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ballPos: {fileID: 1315509358}
   camPos: {x: -0.01, y: -0.18, z: -15.11}
+  gear: {fileID: 0}
 --- !u!23 &1284905908
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4659,6 +4662,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonSelectGear: 323
   gearSpeed: 40
+  gearMoveSpeed: 0
   chosenGear: {fileID: 180559758}
   inverseRotation: 0
   color: {r: 1, g: 0, b: 0.68275833, a: 1}
@@ -4881,6 +4885,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ballPos: {fileID: 1012081501}
   camPos: {x: -22.3, y: -3.8, z: -15.11}
+  gear: {fileID: 1411694981}
 --- !u!1001 &1539769828
 Prefab:
   m_ObjectHideFlags: 0

@@ -15,6 +15,8 @@ public class GearManager : MonoBehaviour
     private Gear child;
     [SerializeField]
     private bool inverseRotation;
+    [SerializeField]
+    private Color color;
 
     private void Start()
     {
@@ -75,7 +77,7 @@ public class GearManager : MonoBehaviour
 
     private void SetupGearRotation()
     {
-        chosenGear.SetColor(Color.red);
+        chosenGear.SetColor(color);
 
         if(!chosenGear.gear.right)
             foreach (Gear gear in gears)

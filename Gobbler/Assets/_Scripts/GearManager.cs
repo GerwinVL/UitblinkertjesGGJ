@@ -5,10 +5,12 @@ using Jext;
 
 public class GearManager : MonoBehaviour
 {
+    public static GearManager self;
+
     [SerializeField]
     private KeyCode buttonSelectGear;
     [SerializeField]
-    private float gearSpeed;
+    private float gearSpeed, gearMoveSpeed;
     [SerializeField]
     private ChangeGear chosenGear;
     private List<Gear> gears, childs;
@@ -17,6 +19,11 @@ public class GearManager : MonoBehaviour
     private bool inverseRotation;
     [SerializeField]
     private Color color;
+
+    private void Awake()
+    {
+        self = this;
+    }
 
     private void Start()
     {
@@ -66,6 +73,9 @@ public class GearManager : MonoBehaviour
         speed = chosenGear.transform.forward * axisValue * Time.deltaTime * gearSpeed;
         foreach (Gear gear in gears)
             gear.transform.Rotate(speed * (gear.right ? 1 : -1));
+
+        childs.Clear();
+
     }
 
     public void ChangeToNewGear(ChangeGear cGear)
@@ -83,4 +93,42 @@ public class GearManager : MonoBehaviour
             foreach (Gear gear in gears)
                 gear.right = !gear.right;
     }
+
+    #region Add / Remove gears
+
+    public void Insert(Gear gear, Gear parent)
+    {
+        gear.parent = parent;
+        parent.childs.Add(gear);
+        gear.right = !parent.right;
+    }
+
+    public void Extrude(Gear gear)
+    {
+        if(gear.parent != null)
+        {
+            gear.parent.childs.Remove(gear);
+            gear.parent = null;
+        }
+
+        foreach(Gear child in gear.childs)
+            child.parent = null;
+        gear.childs.Clear();
+    }
+
+    #endregion
+
+    #region Move Gears
+
+    private IEnumerator MoveGearToPos(Gear gear, Vector3 pos)
+    {
+        while(Vector3.Distance(gear.transform.position, pos) > 0.25f)
+        {
+            gear.transform.position = Vector3.MoveTowards(gear.transform.position, pos, gearMoveSpeed * Time.deltaTime);
+            yield return null;
+        }
+        gear.transform.position = pos;
+    }
+
+    #endregion
 }

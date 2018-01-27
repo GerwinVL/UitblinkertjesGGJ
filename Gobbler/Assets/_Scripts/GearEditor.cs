@@ -52,6 +52,12 @@ public class GearEditor : MonoBehaviour
     {
         if (gear.parent == null)
             return;
+        
+        gear.transform.position = GetConnectionPos(gear);
+    }
+
+    public Vector3 GetConnectionPos(Gear gear)
+    {
         dis = gear.size / 2 + gear.parent.size / 2;
         root = gear.parent.transform.position;
 
@@ -61,7 +67,7 @@ public class GearEditor : MonoBehaviour
 
         ret = new Vector3(x, y, 0) * dis + root;
         ret.z = root.z;
-        gear.transform.position = ret;
+        return ret;
     }
 }
 

@@ -9,14 +9,20 @@ public class GearManager : MonoBehaviour
     private KeyCode buttonSelectGear;
     [SerializeField]
     private float gearSpeed;
-    private Gear chosenGear;
+    [SerializeField]
+    private ChangeGear chosenGear;
     private List<Gear> gears;
 
     private void Start()
     {
         GearEditor.InitGears();
         gears = GearEditor.self.gears;
-        chosenGear = GearEditor.self.gears[0];
+
+        gears.ForEach(gear => gear.child = null);
+        foreach (Gear gear in gears)
+            if (gear.parent != null)
+                gear.parent.child = gear;
+
         SetupGearRotation();
     }
 
@@ -30,7 +36,6 @@ public class GearManager : MonoBehaviour
         CheckIfNewGearSelected();
 
         axisValue = Input.GetAxis(axisRotation);
-
         if (Mathf.Approximately(0, axisValue))
             return;
 
@@ -41,7 +46,7 @@ public class GearManager : MonoBehaviour
 
     private Ray ray;
     private RaycastHit hit;
-    private Gear gear;
+    private ChangeGear cGear;
     private bool right;
     private void CheckIfNewGearSelected()
     {
@@ -50,30 +55,37 @@ public class GearManager : MonoBehaviour
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit))
             {
-                gear = hit.transform.GetComponent<Gear>();
-                if (gear != null)
+                cGear = hit.transform.GetComponent<ChangeGear>();
+                if (cGear != null)
                 {
-                    if (chosenGear == gear)
+                    if (chosenGear == cGear)
                         return;
 
                     chosenGear.SetColor(Color.white);
-                    chosenGear = gear;
+                    chosenGear = cGear;
                     SetupGearRotation();
                 }
             }
         }
     }
 
+    private Gear gear;
     private void SetupGearRotation()
     {
         chosenGear.SetColor(Color.red);
 
-        for (int gear = 0; gear < gears.Count; gear++)
-            if (chosenGear == gears[gear])
-                right = !Methods.IsEven(gear);
+        gear = chosenGear.gear;
+        gear.right = true;
+        while(gear.parent != null)
+        {
+            gear.parent.right = !gear.right;
+            gear = gear.parent;
+        }
 
-        gears[0].right = right;
-        for (int gear = 1; gear < gears.Count; gear++)
-            gears[gear].right = !gears[gear].right;
+        while(gear.child != null)
+        {
+            gear.child.right = !gear.right;
+            gear = gear.child;
+        }
     }
 }

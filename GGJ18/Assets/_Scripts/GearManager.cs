@@ -7,13 +7,16 @@ public class GearManager : MonoBehaviour {
 
     [SerializeField]
     private KeyCode buttonSelectGear;
-    private int chosenGear = 0;
+    private Gear chosenGear;
 
     private void Start()
     {
         GearEditor.InitGears();
+        chosenGear = GearEditor.self.gears[0];
     }
 
+    [SerializeField]
+    private string axisRotation = "Horizontal";
     private float axisValue;
     private Ray ray;
     private RaycastHit hit;
@@ -25,14 +28,16 @@ public class GearManager : MonoBehaviour {
         if (Input.GetKeyDown(buttonSelectGear))
         {
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            print(1);
             if (Physics.Raycast(ray, out hit))
             {
                 gear = hit.transform.GetComponent<Gear>();
                 if (gear != null)
-                    chosenGear = gear.name.Last();
-                print(chosenGear);
+                    chosenGear = gear;
             }
         }
+
+        axisValue = Input.GetAxis(axisRotation);
+
+
     }
 }

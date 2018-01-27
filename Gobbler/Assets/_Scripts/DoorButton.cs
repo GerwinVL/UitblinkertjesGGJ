@@ -7,9 +7,9 @@ public class DoorButton : MonoBehaviour {
     private bool activated;
     public GameObject door;
     private float targetPosZ;
-    private float moveSpeed = 1f;
+    private float moveSpeed = 3f;
 
-    private void OnCollisionEnter(Collision c)
+    private void OnCollisionEnter2D(Collision2D c)
     {
         if (c.transform.tag == "Player")
         {

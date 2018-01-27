@@ -9,7 +9,7 @@ public class LevelExit : MonoBehaviour {
     private float camSpeed = 10;
     private bool activated;
 
-    private void OnTriggerEnter(Collider c)
+    private void OnTriggerEnter2D(Collider2D c)
     {
         if(c.transform.tag == "Player")
         {

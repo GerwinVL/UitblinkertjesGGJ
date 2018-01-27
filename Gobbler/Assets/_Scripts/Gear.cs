@@ -8,7 +8,7 @@ public class Gear : MonoBehaviour, IComparable<Gear>
 {
     public Gear parent;
     [HideInInspector]
-    public Gear child;
+    public List<Gear> childs;
     [Range(0, 359)]
     public int angle;
     public float size;

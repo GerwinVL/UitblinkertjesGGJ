@@ -370,6 +370,7 @@ MonoBehaviour:
   buttonSelectGear: 323
   gearSpeed: 40
   chosenGear: {fileID: 1796307832}
+  inverseRotation: 0
   axisRotation: Horizontal
 --- !u!114 &1581024812
 MonoBehaviour:
@@ -505,6 +506,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114763396312092616, guid: 3a97ecbee7e68fc4f8fe5d2e0855c7bd,
+        type: 2}
+      propertyPath: child.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4945894364053550, guid: 3a97ecbee7e68fc4f8fe5d2e0855c7bd, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -561,6 +567,16 @@ Prefab:
       propertyPath: right
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114763396312092616, guid: 3a97ecbee7e68fc4f8fe5d2e0855c7bd,
+        type: 2}
+      propertyPath: child.Array.data[0]
+      value: 
+      objectReference: {fileID: 241314286}
+    - target: {fileID: 114763396312092616, guid: 3a97ecbee7e68fc4f8fe5d2e0855c7bd,
+        type: 2}
+      propertyPath: child.Array.data[1]
+      value: 
+      objectReference: {fileID: 1474124851}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3a97ecbee7e68fc4f8fe5d2e0855c7bd, type: 2}
   m_IsPrefabParent: 0

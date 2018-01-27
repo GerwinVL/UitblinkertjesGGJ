@@ -6,6 +6,7 @@ public class LevelExit : MonoBehaviour {
 
     public Transform ballPos;
     public Vector3 camPos;
+    public ChangeGear gear;
     private float camSpeed = 10;
     private bool activated;
 
@@ -36,6 +37,7 @@ public class LevelExit : MonoBehaviour {
                 moved = true;
                 GameObject ball = ObjectList.instance.ball;
                 ball.transform.position = new Vector3(ballPos.position.x, ballPos.position.y, ball.transform.position.z);
+                GearManager.self.ChangeToNewGear(gear);
             }
         }
         

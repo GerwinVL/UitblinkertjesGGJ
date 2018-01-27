@@ -150,11 +150,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useFixedUpdate: 0
-  lastTab: 0
+  lastTab: 1
   movementSettingsFoldout: 0
   zoomingSettingsFoldout: 0
   mapLimitSettingsFoldout: 0
   inputSettingsFoldout: 0
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
   dTime: 0
   keyboardSpeed: 20
   screenEdgeScrollSpeed: 10
@@ -167,9 +170,8 @@ MonoBehaviour:
   maxDistance: -75
   limitX: 25
   limitY: 25
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 0
+  following: 0
+  target: {fileID: 0}
   debug: 1
   useScreenEdgeInput: 1
   screenEdgeBorder: 2

@@ -7,24 +7,45 @@ public class GearManager : MonoBehaviour {
 
     [SerializeField]
     private KeyCode buttonSelectGear;
+    [SerializeField]
+    private float gearSpeed;
     private Gear chosenGear;
+    private List<Gear> gears;
 
     private void Start()
     {
         GearEditor.InitGears();
+        gears = GearEditor.self.gears;
+        SetupGearRotation();
+
         chosenGear = GearEditor.self.gears[0];
     }
 
     [SerializeField]
     private string axisRotation = "Horizontal";
     private float axisValue;
-    private Ray ray;
-    private RaycastHit hit;
-    private Gear gear;
-        
+    private Vector3 speed;
     private void Update()
     {
         // "The thing people don't realize about the Gear Wars ..."
+        CheckIfNewGearSelected();
+
+        axisValue = Input.GetAxis(axisRotation);
+
+        if (Mathf.Approximately(0, axisValue))
+            return;
+
+        speed = chosenGear.transform.forward * axisValue * Time.deltaTime * gearSpeed;
+        foreach (Gear gear in gears)
+            gear.transform.Rotate(speed * (gear.right ? 1 : -1));
+    }
+
+    private Ray ray;
+    private RaycastHit hit;
+    private Gear gear;
+    private bool right;
+    private void CheckIfNewGearSelected()
+    {
         if (Input.GetKeyDown(buttonSelectGear))
         {
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -32,12 +53,26 @@ public class GearManager : MonoBehaviour {
             {
                 gear = hit.transform.GetComponent<Gear>();
                 if (gear != null)
+                {
+                    if (chosenGear == gear)
+                        return;
                     chosenGear = gear;
+                    SetupGearRotation();
+                }
             }
         }
+    }
 
-        axisValue = Input.GetAxis(axisRotation);
+    private void SetupGearRotation()
+    {
+        for (int gear = 0; gear < gears.Count; gear++)
+            if (chosenGear)
+                right = Methods.IsEven(gear);
 
-
+        foreach (Gear gear in GearEditor.self.gears)
+        {
+            gear.right = right;
+            right = !right;
+        }
     }
 }

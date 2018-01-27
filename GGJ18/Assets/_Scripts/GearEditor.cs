@@ -9,6 +9,7 @@ public class GearEditor : MonoBehaviour {
 
     public static GearEditor self;
 
+    public bool update;
     private float dis, radians, x, y;
     private Vector3 root, ret;
     private Gear[] gearsArr;
@@ -18,6 +19,12 @@ public class GearEditor : MonoBehaviour {
     private void Awake()
     {
         self = this;
+    }
+
+    private void Update()
+    {
+        if (update)
+            ConnectAllGears();
     }
 
     public static void InitGears()
@@ -66,7 +73,8 @@ public class ObjectBuilderEditor : Editor
         DrawDefaultInspector();
 
         GearEditor myScript = (GearEditor)target;
-        if (GUILayout.Button("Connect"))
-            myScript.ConnectAllGears();
+        if (!myScript.update)
+            if(GUILayout.Button("Connect"))
+                myScript.ConnectAllGears();
     }
 }

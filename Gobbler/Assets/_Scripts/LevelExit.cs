@@ -6,7 +6,7 @@ public class LevelExit : MonoBehaviour {
 
     public Transform ballPos;
     public Vector3 camPos;
-    private float camSpeed = 5;
+    private float camSpeed = 10;
     private bool activated;
 
     private void OnTriggerEnter(Collider c)

@@ -5,6 +5,8 @@ using Jext;
 
 public class GearManager : MonoBehaviour
 {
+    public static GearManager self;
+
     [SerializeField]
     private KeyCode buttonSelectGear;
     [SerializeField]
@@ -17,6 +19,11 @@ public class GearManager : MonoBehaviour
     private bool inverseRotation;
     [SerializeField]
     private Color color;
+
+    private void Awake()
+    {
+        self = this;
+    }
 
     private void Start()
     {
@@ -65,8 +72,10 @@ public class GearManager : MonoBehaviour
 
         speed = chosenGear.transform.forward * axisValue * Time.deltaTime * gearSpeed;
         foreach (Gear gear in gears)
-            if(gear.parent != null || gear.childs.Count > 0)
-                gear.transform.Rotate(speed * (gear.right ? 1 : -1));
+            gear.transform.Rotate(speed * (gear.right ? 1 : -1));
+
+        childs.Clear();
+
     }
 
     public void ChangeToNewGear(ChangeGear cGear)

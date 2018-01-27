@@ -1,0 +1,39 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class DoorButton : MonoBehaviour {
+
+    private bool activated;
+    public GameObject door;
+    private float targetPosZ;
+    private float moveSpeed = 1f;
+
+    private void OnCollisionEnter(Collision c)
+    {
+        if (c.transform.tag == "Player")
+        {
+            if (!activated)
+            {
+                activated = true;
+                targetPosZ = door.transform.position.z + 1.5f;
+                StartCoroutine(MoveDoor());
+            }
+        }
+    }
+
+    private IEnumerator MoveDoor()
+    {
+        bool moved = false;
+        while (!moved)
+        {
+            yield return new WaitForEndOfFrame();
+            Vector3 targetPos = new Vector3(door.transform.position.x,door.transform.position.y, targetPosZ);
+            door.transform.position = Vector3.MoveTowards(door.transform.position, targetPos, moveSpeed * Time.deltaTime);
+            if (door.transform.position.z.ToString() == targetPosZ.ToString())
+            {
+                moved = true;
+            }
+        }
+    }
+}

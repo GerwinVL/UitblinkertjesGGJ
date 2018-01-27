@@ -63,6 +63,8 @@ public class GearManager : MonoBehaviour
     private string axisRotation = "Horizontal";
     private float axisValue;
     private Vector3 speed;
+    private List<Gear> open, closed, fitList;
+    private Gear current;
     private void Update()
     {
         // "The thing people don't realize about the Gear Wars ..."
@@ -71,11 +73,30 @@ public class GearManager : MonoBehaviour
             return;
 
         speed = chosenGear.transform.forward * axisValue * Time.deltaTime * gearSpeed;
-        foreach (Gear gear in gears)
+        
+
+        open = new List<Gear>() { chosenGear.gear };
+        closed = new List<Gear>();
+        fitList = new List<Gear>();
+
+        while(open.Count > 0)
+        {
+            current = open[0];
+            open.RemoveAt(0);
+            closed.Add(current);
+            fitList.Add(current);
+
+            if (current.parent != null)
+                if (!closed.Contains(current.parent) && !open.Contains(current.parent))
+                    open.Add(current.parent);
+
+            foreach (Gear gear in current.childs)
+                if (!closed.Contains(gear) && !open.Contains(gear))
+                    open.Add(gear);
+        }
+
+        foreach (Gear gear in fitList)
             gear.transform.Rotate(speed * (gear.right ? 1 : -1));
-
-        childs.Clear();
-
     }
 
     public void ChangeToNewGear(ChangeGear cGear)

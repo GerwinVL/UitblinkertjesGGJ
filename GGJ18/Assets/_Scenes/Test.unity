@@ -122,6 +122,7 @@ GameObject:
   m_Component:
   - component: {fileID: 897768138}
   - component: {fileID: 897768137}
+  - component: {fileID: 897768139}
   m_Layer: 0
   m_Name: EditorTool
   m_TagString: Untagged
@@ -153,6 +154,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &897768139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 897768136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f906ccff2fb754e4c836e02b47dc14b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonSelectGear: 323
 --- !u!1 &967881230
 GameObject:
   m_ObjectHideFlags: 0

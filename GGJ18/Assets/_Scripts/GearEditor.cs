@@ -7,23 +7,40 @@ using UnityEditor;
 [ExecuteInEditMode]
 public class GearEditor : MonoBehaviour {
 
+    public static GearEditor self;
+
     private float dis, radians, x, y;
     private Vector3 root, ret;
     private Gear[] gearsArr;
-    private List<Gear> gears;
+    private List<Gear> gears = new List<Gear>();
 
-    public void ConnectAllGears()
+    private void Awake()
+    {
+        self = this;
+    }
+
+    public static void InitGears()
+    {
+        self.InitGearList();
+    }
+
+    public void InitGearList()
     {
         gearsArr = FindObjectsOfType(typeof(Gear)) as Gear[];
+        gears.Clear();
         foreach (Gear gear in gearsArr)
             gears.Add(gear);
         gears.Sort();
+    }
 
+    public void ConnectAllGears()
+    {
+        InitGearList();
         foreach (Gear gear in gears)
             ConnectGears(gear);
     }
 
-    public void ConnectGears(Gear gear)
+    private void ConnectGears(Gear gear)
     {
         if (gear.parent == null)
             return;

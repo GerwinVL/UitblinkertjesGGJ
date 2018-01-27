@@ -44,7 +44,7 @@ public class GearManager : MonoBehaviour
 
             foreach (Gear gear in child.childs)
             {
-                gear.right = !chosenGear.gear.right;
+                gear.right = !child.right;
                 childs.Add(gear);
             }
         }

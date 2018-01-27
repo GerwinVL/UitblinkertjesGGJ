@@ -12,12 +12,8 @@ public class Gear : MonoBehaviour, IComparable<Gear> {
     public float size;
     [HideInInspector]
     public bool right;
+    [SerializeField]
     private Renderer gearOutline;
-
-    private void Awake()
-    {
-        gearOutline = GetComponent<Renderer>();
-    }
 
     public void SetColor(Color color)
     {

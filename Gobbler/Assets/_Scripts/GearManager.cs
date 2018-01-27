@@ -57,8 +57,6 @@ public class GearManager : MonoBehaviour
     private void Update()
     {
         // "The thing people don't realize about the Gear Wars ..."
-        CheckIfNewGearSelected();
-
         axisValue = Input.GetAxis(axisRotation);
         if (Mathf.Approximately(0, axisValue))
             return;
@@ -68,29 +66,11 @@ public class GearManager : MonoBehaviour
             gear.transform.Rotate(speed * (gear.right ? 1 : -1));
     }
 
-    private Ray ray;
-    private RaycastHit hit;
-    private ChangeGear cGear;
-    private bool right;
-    private void CheckIfNewGearSelected()
+    public void ChangeToNewGear(ChangeGear cGear)
     {
-        if (Input.GetKeyDown(buttonSelectGear))
-        {
-            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit))
-            {
-                cGear = hit.transform.GetComponent<ChangeGear>();
-                if (cGear != null)
-                {
-                    if (chosenGear == cGear)
-                        return;
-
-                    chosenGear.SetColor(Color.white);
-                    chosenGear = cGear;
-                    SetupGearRotation();
-                }
-            }
-        }
+        chosenGear.SetColor(Color.white);
+        chosenGear = cGear;
+        SetupGearRotation();
     }
 
     private void SetupGearRotation()

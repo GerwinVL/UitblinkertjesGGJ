@@ -37,6 +37,7 @@ public class LevelExit : MonoBehaviour {
                 moved = true;
                 GameObject ball = ObjectList.instance.ball;
                 ball.transform.position = new Vector3(ballPos.position.x, ballPos.position.y, ball.transform.position.z);
+                ball.GetComponent<CheckPoint>().checkPoint = ballPos;
                 GearManager.self.ChangeToNewGear(gear);
             }
         }

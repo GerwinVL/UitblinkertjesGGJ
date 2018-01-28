@@ -17,7 +17,7 @@ public class TeleportPipe : MonoBehaviour {
                 activated = true;
                 recievingEnd.activated = true;
                 recievingEnd.CallCooldown();
-                GameObject ball = ObjectList.instance.ball;
+                GameObject ball = c.transform.gameObject;
                 ball.transform.position = new Vector3(ballPos.position.x, ballPos.position.y, ball.transform.position.z);
                 StartCoroutine(Cooldown());
             }

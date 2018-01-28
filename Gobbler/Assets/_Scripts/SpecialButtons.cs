@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.PostProcessing;
 
 public class SpecialButtons : MonoBehaviour {
 
@@ -11,6 +12,7 @@ public class SpecialButtons : MonoBehaviour {
     public Vector3 camPos;
     private float camSpeed = 10;
     public Animator door;
+    public PostProcessingProfile pProfile;
 
     private void OnCollisionEnter2D(Collision2D c)
     {
@@ -24,12 +26,44 @@ public class SpecialButtons : MonoBehaviour {
                 {
                     case 0:
                         StartCoroutine(MoveCamera());
+                        StartCoroutine(LerpPostProcessing());
                         break;
                     case 1:
                         StartCoroutine(MoveCamera());
+                        StartCoroutine(LerpPostProcessingBack());
                         break;
                 }
             }
+        }
+    }
+
+    private IEnumerator LerpPostProcessingBack()
+    {
+        float speed = 5, val = 0, progression = 0;
+
+        while(val < 147)
+        {
+            yield return null;
+            progression += speed * Time.deltaTime;
+            val = Mathf.Lerp(47, 147, progression);
+            DepthOfFieldModel.Settings dofm = pProfile.depthOfField.settings;
+            dofm.focalLength = val;
+            pProfile.depthOfField.settings = dofm;
+        }
+    }
+
+    private IEnumerator LerpPostProcessing()
+    {
+        float speed = 5, val = 0, progression = 0;
+
+        while (val > 47)
+        {
+            yield return null;
+            progression += speed * Time.deltaTime;
+            val = Mathf.Lerp(147, 47, progression);
+            DepthOfFieldModel.Settings dofm = pProfile.depthOfField.settings;
+            dofm.focalLength = val;
+            pProfile.depthOfField.settings = dofm;
         }
     }
 

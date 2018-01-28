@@ -82,7 +82,7 @@ public class GameManager : MonoBehaviour {
         scoreHolder.gameObject.SetActive(true);
 
         for (int score = 0; score < 5; score++)
-            scores[score].text = place == score ? "Your score: " + "" + ConvScore(highScores.scores[score]);
+            scores[score].text = place == score ? "Your score: " : "" + ConvScore(highScores.scores[score]);
     }
 
     public class HighScores

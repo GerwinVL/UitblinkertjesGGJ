@@ -7101,6 +7101,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e647c4a5bc4b724f86d7cbc4c606bc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainPage: {fileID: 626955421}
+  creditsPage: {fileID: 1632176545}
 --- !u!224 &1123595837
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7787,7 +7789,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!23 &1246417248
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -8549,12 +8551,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 1123595836}
+        m_MethodName: ButtonInput
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -11998,7 +12000,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1256896571163456, guid: a7d0d0e9b46a2c943b918c9e5faa0f3a, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a7d0d0e9b46a2c943b918c9e5faa0f3a, type: 2}

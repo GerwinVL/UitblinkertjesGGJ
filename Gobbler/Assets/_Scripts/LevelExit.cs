@@ -27,7 +27,7 @@ public class LevelExit : MonoBehaviour {
         bool moved = false;
         GameObject cam = ObjectList.instance.cam;
         print(cam);
-        Vector3 targetPos = new Vector3(camPos.x, camPos.y, cam.transform.position.z);
+        Vector3 targetPos = new Vector3(camPos.x, camPos.y, camPos.z);
         while (!moved)
         {
             yield return new WaitForEndOfFrame();

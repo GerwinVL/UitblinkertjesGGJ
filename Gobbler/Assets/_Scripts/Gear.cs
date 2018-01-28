@@ -12,7 +12,7 @@ public class Gear : MonoBehaviour, IComparable<Gear>
     [Range(0, 359)]
     public int angle;
     public float size;
-    [HideInInspector]
+    //[HideInInspector]
     public bool right;
 
     public int CompareTo(Gear other)

@@ -73,7 +73,6 @@ public class GearManager : MonoBehaviour
             return;
 
         speed = chosenGear.transform.forward * axisValue * Time.deltaTime * gearSpeed;
-        
 
         open = new List<Gear>() { chosenGear.gear };
         closed = new List<Gear>();

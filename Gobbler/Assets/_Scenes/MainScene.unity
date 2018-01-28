@@ -439,6 +439,7 @@ MonoBehaviour:
   gear: {fileID: 1977149946}
   camPos: {x: 26.3, y: 20.99, z: -24.93}
   door: {fileID: 0}
+  pProfile: {fileID: 11400000, guid: 3d11f1e51a69c04408889c110d6bad53, type: 2}
 --- !u!61 &51034420
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3519,7 +3520,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -9673,6 +9674,7 @@ MonoBehaviour:
   gear: {fileID: 407273536}
   camPos: {x: 12.3, y: 9.6, z: -15.11}
   door: {fileID: 1310174912}
+  pProfile: {fileID: 0}
 --- !u!61 &1005633895
 BoxCollider2D:
   m_ObjectHideFlags: 0

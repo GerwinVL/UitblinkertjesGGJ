@@ -13,7 +13,7 @@ public class RotatingAsset : MonoBehaviour {
 	private void Update () {
         transform.Rotate(speed * Time.deltaTime * transform.forward * (right ? -1 : 1));
         rot = transform.eulerAngles;
-        rot.x = rot.y = 0;
+        rot.x = 0;
         transform.eulerAngles = rot;
     }
 }

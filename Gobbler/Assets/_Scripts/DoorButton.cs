@@ -7,6 +7,7 @@ public class DoorButton : MonoBehaviour {
     private bool activated;
     //public GameObject door;
     public Animator door;
+    public Animator button;
     private float targetPosZ;
     private float moveSpeed = 3f;
 
@@ -17,25 +18,19 @@ public class DoorButton : MonoBehaviour {
             if (!activated)
             {
                 activated = true;
-             //   targetPosZ = door.transform.position.z + 1.5f;
-                // StartCoroutine(MoveDoor());
-                //door.SetActive(false);
+                button.SetTrigger("Triggered");
                 door.SetTrigger("Open");
             }
         }
     }
-
-    private IEnumerator MoveDoor()
+    private void OnTriggerEnter2D(Collider2D c)
     {
-        bool moved = false;
-        while (!moved)
+        if (c.transform.tag == "Player")
         {
-            yield return new WaitForEndOfFrame();
-            Vector3 targetPos = new Vector3(door.transform.position.x,door.transform.position.y, targetPosZ);
-            door.transform.position = Vector3.MoveTowards(door.transform.position, targetPos, moveSpeed * Time.deltaTime);
-            if (door.transform.position.z.ToString() == targetPosZ.ToString())
+            if (!activated)
             {
-                moved = true;
+                activated = true;
+                door.SetTrigger("Open");
             }
         }
     }

@@ -2,22 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelExit : MonoBehaviour {
+public class SpecialButtons : MonoBehaviour {
 
-    public Transform ballPos;
-    public Vector3 camPos;
-    public ChangeGear gear;
-    private float camSpeed = 10;
+    public int specialID;
     private bool activated;
+    public Animator button;
+    public ChangeGear gear;
+    public Vector3 camPos;
+    private float camSpeed = 10;
+    public Animator door;
 
-    private void OnTriggerEnter2D(Collider2D c)
+    private void OnCollisionEnter2D(Collision2D c)
     {
         if(c.transform.tag == "Player")
         {
             if (!activated)
             {
                 activated = true;
-                StartCoroutine(MoveCamera());
+                button.SetTrigger("Triggered");
+                switch (specialID)
+                {
+                    case 0:
+                        StartCoroutine(MoveCamera());
+                        break;
+                    case 1:
+                        StartCoroutine(MoveCamera());
+                        break;
+                }
             }
         }
     }
@@ -35,12 +46,12 @@ public class LevelExit : MonoBehaviour {
             if (cam.transform.position.ToString() == targetPos.ToString())
             {
                 moved = true;
-                GameObject ball = ObjectList.instance.ball;
-                ball.transform.position = new Vector3(ballPos.position.x, ballPos.position.y, ball.transform.position.z);
-                ball.GetComponent<CheckPoint>().checkPoint = ballPos;
                 GearManager.self.ChangeToNewGear(gear);
             }
         }
-        
+        if(specialID == 1)
+        {
+            door.SetTrigger("Open");
+        }
     }
 }

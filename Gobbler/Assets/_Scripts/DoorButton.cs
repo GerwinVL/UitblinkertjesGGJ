@@ -30,7 +30,6 @@ public class DoorButton : MonoBehaviour {
             if (!activated)
             {
                 activated = true;
-                button.SetTrigger("Triggered");
                 door.SetTrigger("Open");
             }
         }

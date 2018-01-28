@@ -5,8 +5,8 @@ using UnityEngine;
 public class MainMenu : MonoBehaviour
 {
 
-    public gameObject mainPage;
-    public gameObject creditsPage;
+    public GameObject mainPage;
+    public GameObject creditsPage;
 
     public void ButtonInput(int i)
     {
@@ -15,8 +15,16 @@ public class MainMenu : MonoBehaviour
             //Credits page
             case 0:
                 mainPage.SetActive(false);
-                creditsPage.SetActive(false);
+                creditsPage.SetActive(true);
                 break;
+			//Play Game
+		case 1:
+			
+			break;
+			//Exit Gamea
+		case 2:
+
+			break;
         }
     }
 }

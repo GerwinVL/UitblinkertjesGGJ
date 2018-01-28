@@ -74,15 +74,17 @@ public class GameManager : MonoBehaviour {
     private Image scoreBoard;
     [SerializeField]
     private float fadeSpeed;
-    private int place;
-    public IEnumerator ShowScores(float newScore)
+    public IEnumerator ShowScores(int place)
     {
-        place = AddScore(newScore);
         yield return StartCoroutine(scoreBoard.FadeToBlack(fadeSpeed, Methods.FadeType.FadeOut));
         scoreHolder.gameObject.SetActive(true);
 
         for (int score = 0; score < 5; score++)
-            scores[score].text = place == score ? "Your score: " : "" + ConvScore(highScores.scores[score]);
+        {
+            scores[score].text = ConvScore(highScores.scores[score]);
+            if (score == place)
+                scores[score].color = Color.red;
+        }
     }
 
     public class HighScores

@@ -18,15 +18,41 @@ public class GameManager : MonoBehaviour {
         highScores = Methods.Load<HighScores>(path);
     }
 
-    public void AddScore(float newScore)
+    #region Timer
+    public void StartTimer()
+    {
+        timer = StartCoroutine(Timer());
+    }
+
+    private float time;
+    private Coroutine timer;
+    private IEnumerator Timer()
+    {
+        time = 0;
+        while(true)
+        {
+            time += Time.deltaTime;
+            yield return null;
+        }
+    }
+
+    public int EndTimer()
+    {
+        StopCoroutine(timer);
+        return AddScore(time);
+    }
+    #endregion
+
+    private int AddScore(float newScore)
     {
         for (int score = 0; score < 5; score++)
             if(highScores.scores[score] < newScore)
             {
                 highScores.scores[score] = newScore;
-                break;
+                return score;
             }
         SaveScores();
+        return 6;
     }
 
     private void SaveScores()

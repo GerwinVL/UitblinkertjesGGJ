@@ -41,7 +41,7 @@ namespace Jext
         }
 
         public enum FadeType {FadeIn, FadeOut, TotalFade }
-        public static IEnumerator FadeToBlack(Image image, float speed, FadeType type)
+        public static IEnumerator FadeToBlack(this Image image, float speed, FadeType type)
         {
             if(type != FadeType.FadeIn)
                 while (image.color.a < 0.9)

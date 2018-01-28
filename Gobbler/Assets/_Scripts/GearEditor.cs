@@ -1,11 +1,13 @@
-﻿#if UNITY_EDITOR
+﻿
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+#if UNITY_EDITOR
 using UnityEditor;
 
 [ExecuteInEditMode]
+#endif
 public class GearEditor : MonoBehaviour
 {
     public static GearEditor self;
@@ -71,7 +73,7 @@ public class GearEditor : MonoBehaviour
         return ret;
     }
 }
-
+#if UNITY_EDITOR
 [CustomEditor(typeof(GearEditor))]
 public class ObjectBuilderEditor : Editor
 {

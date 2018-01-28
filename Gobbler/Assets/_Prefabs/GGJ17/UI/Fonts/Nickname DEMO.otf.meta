@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 563bab65a2f3aa641a85e960537d71aa
+timeCreated: 1484954055
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Nickname DEMO
+  fontNames:
+  - Nickname DEMO
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
